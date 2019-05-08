@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+     <!-- 1.扫描控制器所在的包 -->
+     <context:component-scan base-package="com.yangjie.hrmanager.controller"/> 
+     <!-- 2.开启注解驱动 -->
+     <mvc:annotation-driven/>   
+     
+     <!-- 3.配置试图解析器 -->   
+     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     	<property name="prefix" value="/WEB-INF/view/"/><!-- 记得在相应的位置去创建view文件夹 -->
+     	<property name="suffix" value=".jsp"/>
+     </bean> 
+     
+     <!-- 4.配置放行静态资源 -->  
+     <!-- 
+     	mapping：将静态资源映射到指定的路径下
+		location：本地静态资源文件所在的目录
+      -->
+     <mvc:resources location="/css/" mapping="/css/**"/><!-- 记得在相应的位置去创建static文件夹 -->
+     <mvc:resources location="/img/" mapping="/img/**"/>
+     <mvc:resources location="/js/" mapping="/js/**"/>       
+</beans>
